@@ -20,5 +20,5 @@ Route::group(['prefix' => 'admin'], function () {
     
 });
 
-
+Route::resource('/survey', 'Guest\SurveyController');
 Route::get('/home', 'HomeController@index')->name('home');

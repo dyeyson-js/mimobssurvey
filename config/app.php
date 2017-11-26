@@ -168,6 +168,8 @@ return [
          * Package Service Providers...
          */
 
+        \Torann\Currency\CurrencyServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -230,6 +232,8 @@ return [
         'Reminder'   => Cartalyst\Sentinel\Laravel\Facades\Reminder::class,
         'Sentinel'   => Cartalyst\Sentinel\Laravel\Facades\Sentinel::class,
 
+        'Currency' => \Torann\Currency\Facades\Currency::class,
+        'Javascript' => Laracasts\Utilities\JavaScript\JavaScriptFacade::class,
     ],
 
 ];

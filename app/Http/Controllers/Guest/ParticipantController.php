@@ -4,16 +4,16 @@ namespace App\Http\Controllers\Guest;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\CurrencyService;
-use Javascript;
+use App\Http\Requests\ParticipantRequest;
+use App\Services\ParticipantService;
 
-class SurveyController extends Controller
+class ParticipantController extends Controller
 {
-    private $currencyService;
+    private $participantService;
 
-    public function __construct(CurrencyService $currencyService)
+    public function __construct(ParticipantService $participantService)
     {
-        $this->currencyService = $currencyService;
+        $this->participantService = $participantService;
     }
 
     /**
@@ -23,13 +23,7 @@ class SurveyController extends Controller
      */
     public function index()
     {
-        $currencies = $this->currencyService->all();
-
-        Javascript::put([
-            'currencies' => $currencies
-        ]);
-     
-        return view('surveys.index');
+        //
     }
 
     /**
@@ -39,7 +33,7 @@ class SurveyController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -48,9 +42,15 @@ class SurveyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ParticipantRequest $request)
     {
-        //
+        $participant = $this->participantService->store($request);
+
+        return response()->json([
+            'status' => 'success',
+            'module' => 'survey.participants',
+            'participant' => $participant 
+        ]);
     }
 
     /**

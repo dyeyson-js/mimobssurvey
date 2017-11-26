@@ -15,18 +15,18 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('common-card', require('./components/common/Card.vue'));
-Vue.component('common-card-section', require('./components/common/CardSection.vue'));
-Vue.component('common-card-header', require('./components/common/CardHeader.vue'));
-Vue.component('common-card-footer', require('./components/common/CardFooter.vue'));
-Vue.component('common-header', require('./components/common/Header.vue'));
-Vue.component('common-button', require('./components/common/Button.vue'));
-
-Vue.component('survey', require('./components/survey/Survey.vue'));
-Vue.component('survey-start', require('./components/survey/SurveyLanding.vue'));
-Vue.component('survey-profile', require('./components/survey/SurveyProfile.vue'));
-
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+
+Vue.component('survey', require('./components/survey/SurveyIndex.vue'));
+Vue.component('survey-start', require('./components/survey/SurveyStart.vue'));
+Vue.component('survey-participant', require('./components/survey/SurveyParticipant.vue'));
+
+Vue.component('common-header', require('./components/common/Header.vue'));
+Vue.component('common-content', require('./components/common/Content.vue'));
+
+Vue.component('common-card', require('./components/common/Card.vue'));
+Vue.component('common-card-header', require('./components/common/CardHeader.vue'));
+Vue.component('common-card-section', require('./components/common/CardSection.vue'));
 
 const app = new Vue({
     el: '#app'

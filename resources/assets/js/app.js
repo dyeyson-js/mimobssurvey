@@ -24,10 +24,6 @@ Vue.component('survey-participant', require('./components/survey/SurveyParticipa
 Vue.component('common-header', require('./components/common/Header.vue'));
 Vue.component('common-content', require('./components/common/Content.vue'));
 
-Vue.component('common-card', require('./components/common/Card.vue'));
-Vue.component('common-card-header', require('./components/common/CardHeader.vue'));
-Vue.component('common-card-section', require('./components/common/CardSection.vue'));
-
 const app = new Vue({
     el: '#app'
 });

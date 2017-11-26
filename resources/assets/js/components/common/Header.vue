@@ -1,9 +1,11 @@
 <template>
-    <div class="columns">
-        <div class="column">
-            <h3 class="title is-3 has-text-centered">
-                <slot>Header Name</slot>
-            </h3>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h3 class="text-center">
+                    <slot>Header Name</slot>
+                </h3>
+            </div>
         </div>
     </div>
 </template>

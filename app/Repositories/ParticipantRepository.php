@@ -15,6 +15,7 @@ class ParticipantRepository
         try {
             $participant = new Participant();
             $participant->fill($this->sanitizeData($request->all()));
+            $participant->save();
         }
         catch(\Exception $e) {
             DB::rollback();

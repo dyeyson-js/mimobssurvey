@@ -1,9 +1,7 @@
 <footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <p>
-        <strong>MIMO-BS Survey</strong> by <a href="http://vincerapisura.com">Vince Rapisura</a>.
-      </p>
-    </div>
+  <div class="container-fluid">
+    <p class="text-center">
+      <strong>MIMO-BS Survey</strong> by <a href="http://vincerapisura.com">Vince Rapisura</a>.
+    </p>
   </div>
 </footer>

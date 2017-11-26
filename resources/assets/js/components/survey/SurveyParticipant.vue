@@ -6,115 +6,95 @@
         
         <common-content>
             <form @submit.prevent="formSubmit" id="survey-participant-form">
-                <div class="columns">
-                    <div class="column is-half">
-                        <h6 class="title is-6">Participant Details</h6>
-                    </div>
-                    <div class="column is-half">
-                        <h6 class="has-text-right title is-6">Step 1 of 1</h6>
-                    </div>
-                </div>
-
-                <div v-if="errors.message" class="notification is-danger">
+                <div v-if="errors.message" class="alert alert-danger">
                     {{ errors.message }}
                 </div>
 
-                <div class="columns">
-                    <div class="column is-half">
-                        <div class="field">
-                            <label class="label">First Name *</label>
-                            <div class="control">
-                                <input class="input" :class="{ 'is-danger': getError('first_name') }" type="text" name="first_name" placeholder="John" v-model="credentials.first_name">
-                            </div>
-                            <p class="help" :class="{ 'is-danger': getError('first_name') }">{{ getError('first_name') }}</p>
-                        </div>
-                    </div>
-                    <div class="column is-half">
-                        <div class="field">
-                            <label class="label">Last Name *</label>
-                            <div class="control">
-                                <input class="input" :class="{ 'is-danger': getError('last_name') }" type="text" name="last_name" placeholder="Smith" v-model="credentials.last_name">
-                            </div>
-                            <p class="help" :class="{ 'is-danger': getError('last_name') }">{{ getError('last_name') }}</p>                            
-                        </div>
-                    </div>
-                </div>
-
-                <div class="columns">
-                    <div class="column is-half">
-                        <div class="field">
-                            <label class="label">Email Address *</label>
-                            <div class="control">
-                                <input class="input" :class="{ 'is-danger': getError('email') }" type="text" name="email" placeholder="user@company.com" v-model="credentials.email">
-                            </div>
-                            <p class="help" :class="{ 'is-danger': getError('email') }">{{ getError('email') }}</p>
-                        </div>
-                    </div>
-                    <div class="column is-half">
-                        <div class="field">
-                            <label class="label">Mobile Number  *</label>
-                            <div class="control">
-                                <input class="input" :class="{ 'is-danger': getError('phone_num') }" type="text" name="phone_num" placeholder="+63 9XX XXXX" v-model="credentials.phone_num">
-                            </div>
-                            <p class="help" :class="{ 'is-danger': getError('phone_num') }">{{ getError('phone_num') }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="columns">
-                    <div class="column is-half">
-                        <div class="field">
-                            <label class="label">City *</label>
-                            <div class="control">
-                                <input class="input" :class="{ 'is-danger': getError('city') }" type="text" name="city" placeholder="Manila" v-model="credentials.city">
-                            </div>
-                            <p class="help" :class="{ 'is-danger': getError('city') }">{{ getError('city') }}</p>
-                        </div>
-                    </div>
-                    <div class="column is-half">
-                        <div class="field">
-                            <label class="label">Birth Date  *</label>
-                            <div class="control">
-                                <datepicker 
-                                    :inputClass="{ 'input': true, 'is-danger': getError('birth_date') }" 
-                                    v-model="credentials.birth_date" 
-                                    name="birth_date"
-                                    format="MM/dd/yyyy"
-                                    :disabled="date_disabled"
-                                />
-                            </div>
-                            <p class="help" :class="{ 'is-danger': getError('birth_date') }">{{ getError('birth_date') }}</p>                            
-                        </div>
-                    </div>
-                </div>
-
-                <div class="columns">
-                    <div class="column is-half">
-                        <div class="field">
-                            <label class="label">Currency *</label>
-                            <div class="control">
-                                <div class="select is-fullwidth" :class="{ 'is-danger': getError('currency') }">
-                                    <select v-model="credentials.currency" name="currency">   
-                                        <template v-for="(currency, index) in currency_options">
-                                            <option :key="index" :value="currency.code">{{currency.name}} ({{currency.symbol}})</option>
-                                        </template>
-                                    </select>
+                <div class="row">
+                    <div class="col-md-12">
+                        <fieldset>
+                            <legend>Participant Details (Step 1 of 1)</legend>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" :class="{ 'has-error': getError('first_name') }">
+                                        <label for="first_name">First Name *</label>
+                                        <input class="form-control" id="first_name" type="text" name="first_name" placeholder="John" v-model="credentials.first_name">
+                                        <small class="help-block">{{ getError('first_name') }}</small>
+                                    </div>
                                 </div>
-                                <p class="help" :class="{ 'is-danger': getError('currency') }">{{ getError('currency') }}</p>                                
+                                <div class="col-md-6">
+                                    <div class="form-group" :class="{ 'has-error': getError('last_name') }">
+                                        <label for="last_name">Last Name *</label>
+                                        <input class="form-control" id="last_name" type="text" name="last_name" placeholder="Smith" v-model="credentials.last_name">
+                                        <small class="help-block">{{ getError('last_name') }}</small>                            
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="columns">
-                    <div class="column">
-                        <button
-                            type="submit"
-                            class="button is-primary is-large is-fullwidth"
-                            :class="{ 'is-loading': is_loading }"
-                        >
-                            Continue
-                        </button>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" :class="{ 'has-error': getError('email') }">
+                                        <label for="email">Email Address *</label>
+                                        <input class="form-control" id="email" type="text" name="email" placeholder="user@company.com" v-model="credentials.email">
+                                        <small class="help-block">{{ getError('email') }}</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" :class="{ 'has-error': getError('phone_num') }">
+                                        <label for="phone_num">Mobile Number  *</label>
+                                        <input class="form-control" id="phone_num" type="text" name="phone_num" placeholder="+63 9XX XXXX" v-model="credentials.phone_num">
+                                        <small class="help-block">{{ getError('phone_num') }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" :class="{ 'has-error': getError('city') }">
+                                        <label for="city">City *</label>
+                                        <input class="form-control" id="city" type="text" name="city" placeholder="Manila" v-model="credentials.city">
+                                        <small class="help-block">{{ getError('city') }}</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" :class="{ 'has-error': getError('birth_date') }">
+                                        <label for="birth_date">Birth Date  *</label>
+                                        <input autocomplete="false" class="form-control" id="birth_date" type="text" name="birth_date" placeholder="mm/dd/yyyy" v-model="credentials.birth_date" /> 
+                                        <small class="help-block">{{ getError('birth_date') }}</small>                            
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" :class="{ 'has-error': getError('currency') }">
+                                        <label for="currency">Currency *</label>
+                                        <div class="select">
+                                            <select class="form-control" id="currency" name="currency" v-model="credentials.currency">   
+                                                <template v-for="(currency, index) in currency_options">
+                                                    <option :key="index" :value="currency.code">{{currency.name}} ({{currency.symbol}})</option>
+                                                </template>
+                                            </select>
+                                        </div>
+                                        <small class="help-block">{{ getError('currency') }}</small>                                
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button
+                                        type="submit"
+                                        class="btn btn-primary btn-block btn-lg"
+                                        :disabled="is_loading"
+                                        
+                                    >
+                                        <span v-if="is_loading" class="fa fa-circle-o-notch fa-spin"></span> {{ is_loading_button }}
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
                     </div>
                 </div>
             </form>
@@ -123,15 +103,22 @@
 </template>
 
 <script>
-    import Datepicker from 'vuejs-datepicker';
-
     export default {
-        components: {
-            Datepicker,
-        },
-
         mounted() {
-            console.log(Date(moment().year(), moment().month(), moment().day()));
+            const vm = this;
+            $(window).ready(() => {
+                setTimeout(() => {
+                    $("#birth_date").datepicker({
+                        format: 'mm/dd/yyyy',
+                        endDate: moment().format(),
+                        clearBtn: true,
+                        autoclose: true
+                    })
+                    .on('changeDate', (e) => {
+                        vm.credentials.birth_date = e.target.value;
+                    });
+                }, 1000);
+            });
         },
 
         data () {
@@ -147,14 +134,14 @@
                 },
                 errors: {},
                 is_loading: false,
-                date_disabled: {
-                    from: moment().toDate()
-                }
             };
         },
 
         props: {
             nextStep: {
+                type: Function
+            },
+            getParticipantId: {
                 type: Function
             }
         },
@@ -162,6 +149,10 @@
         computed: {
             currency_options() {  
                 return survey.currencies || [];
+            },
+            
+            is_loading_button () {
+                return this.is_loading ? 'Please wait' : 'Continue' ;
             }
         },
 
@@ -185,12 +176,28 @@
                     axios.post('/survey/participant', formData)
                         .then(response => {
                             vm.is_loading = false;
-                            console.log(response.data);
+                            vm.getParticipantId(response.data.participant.id);
+                            vm.nextStep();
                         })
                         .catch(error => {
                             vm.is_loading = false;    
-                            vm.errors = error.response.data;                    
-                            console.log(error.response.data);
+                            if (error.response) {
+                                // The request was made and the server responded with a status code
+                                // that falls out of the range of 2xx
+                                vm.errors = error.response.data;                    
+                                console.log(error.response.data);
+                                console.log(error.response.status);
+                                console.log(error.response.headers);
+                            } else if (error.request) {
+                                // The request was made but no response was received
+                                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                                // http.ClientRequest in node.js
+                                console.log(error.request);
+                            } else {
+                                // Something happened in setting up the request that triggered an Error
+                                console.log('Error', error.message);
+                            }
+                            $("body").scrollTop(0);
                         });
                 }, 1000);
             },

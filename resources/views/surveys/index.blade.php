@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container is-fluid">
-        <div class="columns">
-            <div class="column">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
             </div>
-            <div class="column is-four-fifths" style="min-height:400px;">
+            <div class="col-md-8" style="min-height:400px;">
             <survey></survey>
             </div>
-            <div class="column">
+            <div class="col-md-12">
             </div>
         </div>
     </div>

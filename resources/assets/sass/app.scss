@@ -1,12 +1,13 @@
 
 // Fonts
 // @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 // Variables
-// @import "variables";
+@import "variables";
 
 // Bootstrap
-// @import "~bootstrap-sass/assets/stylesheets/bootstrap";
-@import "~bulma/bulma";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
 @import "~font-awesome/scss/font-awesome";
-@import "~vue-multiselect/dist/vue-multiselect.min";
+@import "~bootstrap-datepicker/dist/css/bootstrap-datepicker";
+// @import "~vue-multiselect/dist/vue-multiselect.min";

@@ -8,7 +8,7 @@
             <div class="columns">
                 <div class="column">
                     <button 
-                        class="button is-primary is-large is-fullwidth"
+                        class="btn btn-primary btn-block btn-lg"
                         @click="nextStep"
                     >
                         Start Survey

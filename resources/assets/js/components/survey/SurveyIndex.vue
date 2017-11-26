@@ -2,11 +2,12 @@
     <div>
         <survey-start 
             v-if="progress === 1" 
-            :nextStep="nextStep" 
+            :nextStep="nextStep"
         /> 
         <survey-participant 
             v-if="progress === 2" 
-            :nextStep="nextStep" 
+            :nextStep="nextStep"
+            :getParticipantId="getParticipantId" 
         />    
     </div>
 </template>
@@ -19,13 +20,18 @@
 
         data() {
             return {
-                progress: 2
+                progress: 2,
+                id: undefined
             };
         },
 
         methods: {
             nextStep() {
                 return this.progress++;
+            },
+
+            getParticipantId(id) {
+                return this.id = id;
             }
         }
     }

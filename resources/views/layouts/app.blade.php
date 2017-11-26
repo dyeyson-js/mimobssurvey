@@ -20,9 +20,7 @@
 <body>
     <div id="app">
         @include('layouts.header')
-        <section class="section">
-            @yield('content')
-        </section>
+        @yield('content')
         @include('layouts.footer')
     </div>
 

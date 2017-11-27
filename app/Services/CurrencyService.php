@@ -16,4 +16,10 @@ class CurrencyService
 
         return $currencies;
     }
+
+    public function getCurrency($code = null) 
+    {
+        $currency = Currency::getCurrency($code);
+        return $currency;
+    }
 }

@@ -20,6 +20,15 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 Vue.component('survey', require('./components/survey/SurveyIndex.vue'));
 Vue.component('survey-start', require('./components/survey/SurveyStart.vue'));
 Vue.component('survey-participant', require('./components/survey/SurveyParticipant.vue'));
+Vue.component('survey-mimo', require('./components/survey/SurveyMimo.vue'));
+
+Vue.component('active-income-default', require('./components/survey/ActiveIncomeDefault.vue'));
+Vue.component('active-income-addon', require('./components/survey/ActiveIncomeAddon.vue'));
+Vue.component('passive-income-default', require('./components/survey/PassiveIncomeDefault.vue'));
+Vue.component('passive-income-addon', require('./components/survey/PassiveIncomeAddon.vue'));
+Vue.component('regular-expenses-default', require('./components/survey/RegularExpensesDefault.vue'));
+Vue.component('regular-expenses-addon', require('./components/survey/RegularExpensesAddon.vue'));
+Vue.component('occassional-expenses-addon', require('./components/survey/OccassionalExpensesAddon.vue'));
 
 Vue.component('common-header', require('./components/common/Header.vue'));
 Vue.component('common-content', require('./components/common/Content.vue'));

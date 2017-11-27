@@ -3,12 +3,19 @@
 namespace App\Repositories;
 
 use DB;
-use App\Models\Participant;
 use Carbon\Carbon;
+use App\Models\Participant;
+use Illuminate\Http\Request;
 
 class ParticipantRepository
 {
-    public function store($request)
+    public function getById($id)
+    {
+        $participant = Participant::findOrFail($id);
+        return $participant;
+    }
+
+    public function store(Request $request)
     {
         DB::beginTransaction();
 

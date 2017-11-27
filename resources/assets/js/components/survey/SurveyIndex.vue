@@ -4,10 +4,17 @@
             v-if="progress === 1" 
             :nextStep="nextStep"
         /> 
+        
         <survey-participant 
             v-if="progress === 2" 
             :nextStep="nextStep"
             :getParticipantId="getParticipantId" 
+        />    
+
+        <survey-mimo 
+            v-if="progress === 3" 
+            :nextStep="nextStep"
+            :participantId="id"
         />    
     </div>
 </template>
@@ -20,8 +27,8 @@
 
         data() {
             return {
-                progress: 2,
-                id: undefined
+                progress: 3,
+                id: 1
             };
         },
 

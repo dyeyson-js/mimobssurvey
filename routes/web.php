@@ -21,5 +21,7 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::resource('/survey', 'Guest\SurveyController');
+Route::post('/survey/participant/currency', 'Guest\ParticipantController@getParticipantCurrency');
 Route::apiResource('/survey/participant', 'Guest\ParticipantController');
+Route::apiResource('/survey/mimo', 'Guest\MimoController');
 Route::get('/home', 'HomeController@index')->name('home');

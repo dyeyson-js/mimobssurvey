@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <fieldset>
-                            <legend>Participant Details (Step 1 of 1)</legend>
+                            <legend>Participant Details (Step 1 of 3)</legend>
                             
                             <div class="row">
                                 <div class="col-md-6">
@@ -70,13 +70,11 @@
                                 <div class="col-md-6">
                                     <div class="form-group" :class="{ 'has-error': getError('currency') }">
                                         <label for="currency">Currency *</label>
-                                        <div class="select">
-                                            <select class="form-control" id="currency" name="currency" v-model="credentials.currency">   
-                                                <template v-for="(currency, index) in currency_options">
-                                                    <option :key="index" :value="currency.code">{{currency.name}} ({{currency.symbol}})</option>
-                                                </template>
-                                            </select>
-                                        </div>
+                                        <select class="form-control" id="currency" name="currency" v-model="credentials.currency">   
+                                            <template v-for="(currency, index) in currency_options">
+                                                <option :key="index" :value="currency.code">{{currency.name}} ({{currency.symbol}})</option>
+                                            </template>
+                                        </select>
                                         <small class="help-block">{{ getError('currency') }}</small>                                
                                     </div>
                                 </div>

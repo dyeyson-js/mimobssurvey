@@ -14,6 +14,16 @@ class ParticipantService
         $this->participantRepository = $participantRepository;
     }
 
+    public function getParticipantById($id = null)
+    {
+        if($id) {
+            $participant = $this->participantRepository->getById($id);
+            return $participant;
+        }
+
+        abort(404);
+    }
+
     public function store(Request $request)
     {
         $participant = $this->participantRepository->store($request);

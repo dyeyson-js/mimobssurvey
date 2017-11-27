@@ -4,22 +4,16 @@ namespace App\Http\Controllers\Guest;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ParticipantRequest;
-use App\Services\ParticipantService;
-use App\Services\CurrencyService;
+use App\Http\Requests\MimoRequest;
+use App\Services\MimoService;
 
-class ParticipantController extends Controller
+class MimoController extends Controller
 {
-    private $participantService;
-    private $currencyService;
+    private $mimoService;
 
-    public function __construct(
-        ParticipantService $participantService,
-        CurrencyService $currencyService
-    )
+    public function __construct(MimoService $mimoService)
     {
-        $this->participantService = $participantService;
-        $this->currencyService = $currencyService;
+        $this->mimoService = $mimoService;
     }
 
     /**
@@ -48,14 +42,13 @@ class ParticipantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ParticipantRequest $request)
+    public function store(MimoRequest $request)
     {
-        $participant = $this->participantService->store($request);
-
+        $mimo = $this->mimoService->store($request);
         return response()->json([
             'status' => 'success',
-            'module' => 'survey.participants',
-            'participant' => $participant 
+            'module' => 'survey.mimo',
+            'mimo' => $mimo 
         ]);
     }
 
@@ -102,12 +95,5 @@ class ParticipantController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function getParticipantCurrency(Request $request)
-    {
-        $participant = $this->participantService->getParticipantById($request->id);
-        $currency = $this->currencyService->getCurrency($participant->currency);
-        return $currency;
     }
 }

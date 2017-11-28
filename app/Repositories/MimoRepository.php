@@ -27,6 +27,28 @@ class MimoRepository
         return $mimo;
     }
 
+    public function update(Request $request, $id)
+    {
+        DB::beginTransaction();
+
+        try {
+            $mimo = Mimo::findOrFail($id);
+            $mimo->fill($this->sanitizeData($request->all()));
+            $mimo->participant_id = $request->participant_id;
+
+            if($mimo->isDirty()) {
+                $mimo->save();
+            }
+        }
+        catch(\Exception $e) {
+            DB::rollback();
+            throw $e;
+        }
+
+        DB::commit();
+        return $mimo;
+    }
+
     protected function sanitizeData(array $data)
     {
         $data['content'] = [

@@ -29,4 +29,13 @@ class ParticipantService
         $participant = $this->participantRepository->store($request);
         return $participant;
     }
+
+    public function update(Request $request, $id = null) {
+        if($id) {
+            $participant = $this->participantRepository->update($request, $id);
+            return $participant;
+        }
+
+        abort(404);
+    } 
 }

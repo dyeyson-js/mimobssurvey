@@ -33,6 +33,27 @@ class ParticipantRepository
         return $participant;
     }
 
+    public function update(Request $request, $id)
+    {
+        DB::beginTransaction();
+
+        try {
+            $participant = Participant::findOrFail($id);
+            $participant->fill($this->sanitizeData($request->all()));
+
+            if($participant->isDirty()) {
+                $participant->save();
+            }
+        }
+        catch(\Exception $e) {
+            DB::rollback();
+            throw $e;
+        }
+
+        DB::commit();
+        return $participant;
+    }
+
     protected function sanitizeData(array $data)
     {
         $data['birth_date'] = Carbon::createFromFormat('m/d/Y', $data['birth_date']);

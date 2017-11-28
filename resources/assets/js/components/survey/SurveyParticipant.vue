@@ -85,8 +85,7 @@
                                     <button
                                         type="submit"
                                         class="btn btn-primary btn-block btn-lg"
-                                        :disabled="is_loading"
-                                        
+                                        :disabled="is_loading"               
                                     >
                                         <span v-if="is_loading" class="fa fa-circle-o-notch fa-spin"></span> {{ is_loading_button }}
                                     </button>
@@ -122,13 +121,13 @@
         data () {
             return {
                 credentials: {
-                    first_name: '',
-                    last_name: '',
-                    email: '',
-                    phone_num: '',
-                    city: '',
-                    birth_date: '',
-                    currency: ''
+                    first_name: this.participant.first_name || '',
+                    last_name: this.participant.last_name || '',
+                    email: this.participant.email || '',
+                    phone_num: this.participant.phone_num || '',
+                    city: this.participant.city || '',
+                    birth_date: moment(this.participant.birth_date).format('MM/DD/YYYY') || '',
+                    currency: this.participant.currency || ''
                 },
                 errors: {},
                 is_loading: false,
@@ -136,11 +135,11 @@
         },
 
         props: {
-            nextStep: {
+            getParticipant: {
                 type: Function
             },
-            getParticipantId: {
-                type: Function
+            participant: {
+                type: Object
             }
         },
 
@@ -171,11 +170,40 @@
                 vm.errors = {};
 
                 setTimeout(() => {
-                    axios.post('/survey/participant', formData)
+                    if(vm.participant.id) {
+                        return axios.put(`/survey/participant/${vm.participant.id}`, formData)
                         .then(response => {
                             vm.is_loading = false;
-                            vm.getParticipantId(response.data.participant.id);
-                            vm.nextStep();
+                            vm.getParticipant(response.data.participant);
+                            $("body").scrollTop(0);
+                        })
+                        .catch(error => {
+                            vm.is_loading = false;    
+                            if (error.response) {
+                                // The request was made and the server responded with a status code
+                                // that falls out of the range of 2xx
+                                vm.errors = error.response.data;                    
+                                console.log(error.response.data);
+                                console.log(error.response.status);
+                                console.log(error.response.headers);
+                            } else if (error.request) {
+                                // The request was made but no response was received
+                                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                                // http.ClientRequest in node.js
+                                console.log(error.request);
+                            } else {
+                                // Something happened in setting up the request that triggered an Error
+                                console.log('Error', error.message);
+                            }
+                            $("body").scrollTop(0);
+                        });
+                    }
+
+                    return axios.post('/survey/participant', formData)
+                        .then(response => {
+                            vm.is_loading = false;
+                            vm.getParticipant(response.data.participant);
+                            $("body").scrollTop(0);
                         })
                         .catch(error => {
                             vm.is_loading = false;    

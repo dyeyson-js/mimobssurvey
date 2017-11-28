@@ -7,15 +7,32 @@
         
         <survey-participant 
             v-if="progress === 2" 
-            :nextStep="nextStep"
-            :getParticipantId="getParticipantId" 
+            :participant="participant"
+            :getParticipant="getParticipant" 
         />    
 
         <survey-mimo 
             v-if="progress === 3" 
-            :nextStep="nextStep"
-            :participantId="id"
+            :participant="participant"
+            :mimo="mimo"
+            :getMimo="getMimo"
         />    
+
+        <survey-pbs 
+            v-if="progress === 4" 
+            :participant="participant"
+            :pbs="pbs"
+            :getBalanceSheet="getBalanceSheet"
+        />
+
+        <survey-summary
+            v-if="progress === 5"
+            :nextStep="nextStep"
+            :gotoProgress="gotoProgress"
+            :participant="participant"
+            :mimo="mimo"
+            :pbs="pbs"
+        />
     </div>
 </template>
 
@@ -27,8 +44,10 @@
 
         data() {
             return {
-                progress: 3,
-                id: 1
+                progress: 1,
+                participant: {},
+                mimo: {},
+                pbs: {}
             };
         },
 
@@ -37,8 +56,23 @@
                 return this.progress++;
             },
 
-            getParticipantId(id) {
-                return this.id = id;
+            gotoProgress(progress = null) {
+                return this.progress = progress;
+            },
+
+            getParticipant(participant) {
+                this.participant = participant;
+                return this.nextStep();
+            },
+
+            getMimo(mimo) {
+                this.mimo = mimo;
+                return this.nextStep();
+            },
+
+            getBalanceSheet(pbs) {
+                this.pbs = pbs;
+                return this.nextStep();
             }
         }
     }

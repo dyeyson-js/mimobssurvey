@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Services;
+
 use App\Repositories\MimoRepository;
 use Illuminate\Http\Request;
 
@@ -17,5 +18,15 @@ class MimoService
     {
         $mimo = $this->mimoRepository->store($request);
         return $mimo;
+    }
+
+    public function update(Request $request, $id = null)
+    {
+        if($id) {
+            $mimo = $this->mimoRepository->update($request, $id);
+            return $mimo;
+        }
+
+        abort(404);
     }
 }

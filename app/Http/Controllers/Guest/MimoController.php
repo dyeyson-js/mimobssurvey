@@ -83,7 +83,12 @@ class MimoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $mimo = $this->mimoService->update($request, $id);
+        return response()->json([
+            'status' => 'success',
+            'module' => 'survey.mimo',
+            'mimo' => $mimo 
+        ]);
     }
 
     /**

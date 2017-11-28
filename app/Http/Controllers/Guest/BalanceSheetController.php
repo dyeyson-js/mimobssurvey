@@ -4,22 +4,16 @@ namespace App\Http\Controllers\Guest;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ParticipantRequest;
-use App\Services\ParticipantService;
-use App\Services\CurrencyService;
+use App\Http\Requests\BalanceSheetRequest;
+use App\Services\BalanceSheetService;
 
-class ParticipantController extends Controller
+class BalanceSheetController extends Controller
 {
-    private $participantService;
-    private $currencyService;
+    private $balanceSheetService;
 
-    public function __construct(
-        ParticipantService $participantService,
-        CurrencyService $currencyService
-    )
+    public function __construct(BalanceSheetService $balanceSheetService)
     {
-        $this->participantService = $participantService;
-        $this->currencyService = $currencyService;
+        $this->balanceSheetService = $balanceSheetService;
     }
 
     /**
@@ -48,14 +42,13 @@ class ParticipantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ParticipantRequest $request)
+    public function store(BalanceSheetRequest $request)
     {
-        $participant = $this->participantService->store($request);
-
+        $bs = $this->balanceSheetService->store($request);
         return response()->json([
             'status' => 'success',
-            'module' => 'survey.participants',
-            'participant' => $participant 
+            'module' => 'survey.pbs',
+            'bs' => $bs 
         ]);
     }
 
@@ -90,12 +83,11 @@ class ParticipantController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $participant = $this->participantService->update($request, $id);
-
+        $bs = $this->balanceSheetService->update($request, $id);
         return response()->json([
             'status' => 'success',
-            'module' => 'survey.participants',
-            'participant' => $participant 
+            'module' => 'survey.pbs',
+            'bs' => $bs 
         ]);
     }
 
@@ -108,12 +100,5 @@ class ParticipantController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function getParticipantCurrency(Request $request)
-    {
-        $participant = $this->participantService->getParticipantById($request->id);
-        $currency = $this->currencyService->getCurrency($participant->currency);
-        return $currency;
     }
 }

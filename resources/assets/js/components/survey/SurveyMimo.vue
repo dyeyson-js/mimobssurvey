@@ -259,18 +259,18 @@
 </template>
 
 <script>
-    import mimofields from './mimo';
+    import mimofields from './mimo/mimo';
 
     export default {
         mounted() {
             const vm = this;
             vm.getCurrency();
-            vm.data.participant_id = vm.participantId;
+            vm.data.participant_id = vm.participant.id;
         },
 
         data () {
             return {
-                data: mimofields,
+                data: this.mimo.content || mimofields,
                 errors: {},
                 is_loading: false,
                 currency: {}
@@ -353,11 +353,14 @@
         },
 
         props: {
-            nextStep: {
+            getMimo: {
                 type: Function
             },
-            participantId: {
-                type: Number
+            participant: {
+                type: Object
+            },
+            mimo: {
+                type: Object
             }
         },
 
@@ -365,7 +368,7 @@
             getCurrency() {
                 const vm = this;
 
-                return axios.post('/survey/participant/currency', { id: vm.participantId })
+                return axios.post('/survey/participant/currency', { id: vm.participant.id })
                     .then(response => {
                         vm.currency = response.data;
                     });
@@ -462,10 +465,41 @@
                 vm.errors = {};
 
                 setTimeout(() => {
-                    axios.post('/survey/mimo', formData)
+                    console.log('hello');
+                    if(vm.mimo.id) {
+                        return axios.put(`/survey/mimo/${vm.mimo.id}`, formData)
+                            .then(response => {
+                                vm.is_loading = false;
+                                vm.getMimo(response.data.mimo);
+                                $("body").scrollTop(0);
+                            })
+                            .catch(error => {
+                                vm.is_loading = false;    
+                                if (error.response) {
+                                    // The request was made and the server responded with a status code
+                                    // that falls out of the range of 2xx
+                                    vm.errors = error.response.data;                    
+                                    console.log(error.response.data);
+                                    console.log(error.response.status);
+                                    console.log(error.response.headers);
+                                } else if (error.request) {
+                                    // The request was made but no response was received
+                                    // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                                    // http.ClientRequest in node.js
+                                    console.log(error.request);
+                                } else {
+                                    // Something happened in setting up the request that triggered an Error
+                                    console.log('Error', error.message);
+                                }
+                                $("body").scrollTop(0);
+                            });
+                    }
+
+                    return axios.post('/survey/mimo', formData)
                         .then(response => {
                             vm.is_loading = false;
-                            // vm.nextStep();
+                            vm.getMimo(response.data.mimo);
+                            $("body").scrollTop(0);
                         })
                         .catch(error => {
                             vm.is_loading = false;    

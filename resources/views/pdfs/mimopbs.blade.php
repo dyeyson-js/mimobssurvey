@@ -10,7 +10,7 @@
     @if(config('app.env') === "local") 
         <link href="http://localhost:8080/css/pdf.css" rel="stylesheet" >    
     @else
-        <link href="{{ asset('css/pdf.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/pdf.css') }}" rel="stylesheet">
     @endif
 
     <style>

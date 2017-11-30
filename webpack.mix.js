@@ -16,5 +16,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/pdf.scss', 'public/css/pdf.css');
 
 if (mix.inProduction()) {
+    mix.extract(['vue', 'jquery']);
     mix.version();
 }

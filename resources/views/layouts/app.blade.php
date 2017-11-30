@@ -14,7 +14,7 @@
     @if(config('app.env') === "local")
     <link href="http://localhost:8080/css/app.css" rel="stylesheet">
     @else
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @endif    
 </head>
 <body>
@@ -28,7 +28,9 @@
     @if(config('app.env') === "local")
     <script src="http://localhost:8080/js/app.js"></script>    
     @else
-    <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ mix('js/manifest.js') }}"></script>
+        <script src="{{ mix('js/vendor.js') }}"></script>
+        <script src="{{ mix('js/app.js') }}"></script>
     @endif
 </body>
 </html>

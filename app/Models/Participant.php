@@ -15,4 +15,30 @@ class Participant extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function mimo()
+    {
+        return $this->hasOne('App\Models\Mimo');
+    }
+
+    public function pbs()
+    {
+        return $this->hasOne('App\Models\BalanceSheet');
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
+    public function getBirthDateFormattedAttribute()
+    {
+        return $this->birth_date->format('m/d/Y');
+    }
+
+    public function getAgeAttribute()
+    {
+        return $this->birth_date->age;
+    }
+    
 }

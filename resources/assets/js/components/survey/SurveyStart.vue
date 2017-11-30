@@ -5,8 +5,8 @@
         </common-header>
 
         <common-content>
-            <div class="columns">
-                <div class="column">
+            <div class="row">
+                <div class="col-md0-12">
                     <button 
                         class="btn btn-primary btn-block btn-lg"
                         @click="nextStep"

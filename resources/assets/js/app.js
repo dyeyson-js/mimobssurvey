@@ -23,6 +23,7 @@ Vue.component('survey-participant', require('./components/survey/SurveyParticipa
 Vue.component('survey-mimo', require('./components/survey/SurveyMimo.vue'));
 Vue.component('survey-pbs', require('./components/survey/SurveyBalanceSheet.vue'));
 Vue.component('survey-summary', require('./components/survey/SurveySummary.vue'));
+Vue.component('survey-result', require('./components/survey/SurveyResult.vue'));
 
 Vue.component('active-income-default', require('./components/survey/mimo/ActiveIncomeDefault.vue'));
 Vue.component('active-income-addon', require('./components/survey/mimo/ActiveIncomeAddon.vue'));
@@ -44,7 +45,6 @@ Vue.component('longterm-liabilities-addon', require('./components/survey/pbs/Lon
 Vue.component('participant-summary', require('./components/survey/summary/ParticipantSummary.vue'));
 Vue.component('mimo-summary', require('./components/survey/summary/MimoSummary.vue'));
 Vue.component('pbs-summary', require('./components/survey/summary/BalanceSheetSummary.vue'));
-
 
 Vue.component('common-header', require('./components/common/Header.vue'));
 Vue.component('common-content', require('./components/common/Content.vue'));

@@ -1,0 +1,22 @@
+// Bordered version
+//
+// Add borders all around the table and between all the columns.
+.table-transparent {
+    border: 0px solid $table-border-color;
+    >thead,
+    >tbody,
+    >tfoot {
+        >tr {
+            >th,
+            >td {
+                border: 0px solid $table-border-color;
+            }
+        }
+    }
+    >thead>tr {
+        >th,
+        >td {
+            border-bottom-width: 0px;
+        }
+    }
+}

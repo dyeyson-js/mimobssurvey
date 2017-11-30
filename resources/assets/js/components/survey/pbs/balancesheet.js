@@ -6,7 +6,7 @@ const pbsfields = {
             value: ''
         },
         {
-            name: 'time_deposit',
+            name: 'time_deposits',
             label: 'Time Deposits',
             value: ''
         },

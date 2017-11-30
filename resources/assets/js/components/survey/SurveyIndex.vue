@@ -27,11 +27,20 @@
 
         <survey-summary
             v-if="progress === 5"
-            :nextStep="nextStep"
+            :getSurvey="getSurvey"
+            :getDownloadLink="getDownloadLink"
+            :getRefreshLink="getRefreshLink"
             :gotoProgress="gotoProgress"
             :participant="participant"
             :mimo="mimo"
             :pbs="pbs"
+        />
+
+        <survey-result 
+            v-if="progress === 6"
+            :survey="survey"
+            :downloadLink="downloadLink"
+            :refreshLink="refreshLink"
         />
     </div>
 </template>
@@ -47,7 +56,10 @@
                 progress: 1,
                 participant: {},
                 mimo: {},
-                pbs: {}
+                pbs: {},
+                survey: {},
+                downloadLink: '/',
+                refreshLink: '/'
             };
         },
 
@@ -68,6 +80,19 @@
             getMimo(mimo) {
                 this.mimo = mimo;
                 return this.nextStep();
+            },
+
+            getSurvey(survey) {
+                this.survey = survey;
+                return this.nextStep();
+            },
+
+            getDownloadLink(link) {
+                return this.downloadLink = link;
+            },
+
+            getRefreshLink(link) {
+                return this.refreshLlink = link;
             },
 
             getBalanceSheet(pbs) {

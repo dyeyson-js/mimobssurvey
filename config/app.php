@@ -234,6 +234,7 @@ return [
 
         'Currency' => \Torann\Currency\Facades\Currency::class,
         'Javascript' => Laracasts\Utilities\JavaScript\JavaScriptFacade::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

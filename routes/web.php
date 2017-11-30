@@ -12,17 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('survey.index');
 });
 
-Route::group(['prefix' => 'admin'], function () {
-    Auth::routes();
+// Route::group(['prefix' => 'admin'], function () {
+//     Auth::routes();
     
-});
+// });
 
-Route::resource('/survey', 'Guest\SurveyController');
+Route::resource('/survey', 'Guest\SurveyController', ['only' => ['index', 'store']]);
 Route::post('/survey/participant/currency', 'Guest\ParticipantController@getParticipantCurrency');
-Route::apiResource('/survey/participant', 'Guest\ParticipantController');
-Route::apiResource('/survey/mimo', 'Guest\MimoController');
-Route::apiResource('/survey/balance-sheet', 'Guest\BalanceSheetController');
+Route::post('/survey/download', 'Guest\DownloadController@generatePDF')->name('survey.download');
+Route::apiResource('/survey/participant', 'Guest\ParticipantController', ['only' => ['store', 'update']]);
+Route::apiResource('/survey/mimo', 'Guest\MimoController', ['only' => ['store', 'update']]);
+Route::apiResource('/survey/balance-sheet', 'Guest\BalanceSheetController', ['only' => ['store', 'update']]);
 Route::get('/home', 'HomeController@index')->name('home');

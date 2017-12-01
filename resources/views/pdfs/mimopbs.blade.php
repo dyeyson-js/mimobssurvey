@@ -135,7 +135,7 @@
                         </tr>
                         <tr>
                             <td class="col-xs-6"><strong>Ideal Net Worth</strong></td>
-                            <td class="col-xs-6 text-right"><strong>{{ $data['ideal_net_worth'] }}</strong></td>
+                            <td class="col-xs-6 text-right"><strong>{{ currency_format($data['ideal_net_worth'], $data['currency']) }}</strong></td>
                         </tr>
                     </tbody>
                 </table>
@@ -151,7 +151,7 @@
                         </tr>
                         <tr>
                             <td class="col-xs-6">(a) Actual Net Worth</td>
-                            <td class="col-xs-6 text-right">{{ $data['actual_net_worth'] }}</td>
+                            <td class="col-xs-6 text-right">{{ currency_format($data['actual_net_worth'], $data['currency']) }}</td>
                         </tr>
                         <tr>
                             <td class="col-xs-6">(b) Monthly Income</td>

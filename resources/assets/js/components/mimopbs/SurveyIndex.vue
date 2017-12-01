@@ -92,7 +92,8 @@
             },
 
             getRefreshLink(link) {
-                return this.refreshLlink = link;
+                console.log(link);
+                return this.refreshLink = link;
             },
 
             getBalanceSheet(pbs) {

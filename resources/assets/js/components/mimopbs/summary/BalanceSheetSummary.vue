@@ -284,7 +284,7 @@
             getCurrency() {
                 const vm = this;
 
-                return axios.post('/survey/participant/currency', { id: vm.participant.id })
+                return axios.post('/api/survey/participant/currency', { id: vm.participant.id })
                     .then(response => {
                         vm.currency = response.data;
                     });

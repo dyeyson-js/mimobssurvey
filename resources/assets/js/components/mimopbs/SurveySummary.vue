@@ -107,6 +107,7 @@
                     return axios.post('/api/survey', formData)
                         .then(response => {
                             vm.is_loading = false;
+                            console.log(response.data);
                             vm.getSurvey(response.data.survey);
                             vm.getDownloadLink(response.data.downloadLink);
                             vm.getRefreshLink(response.data.refreshLink);

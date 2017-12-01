@@ -68,7 +68,7 @@ class SurveyController extends Controller
             'module' => 'survey',
             'survey' => $survey,
             'downloadLink' => route('survey.download'),
-            'refreshLink' => route('survey.index') 
+            'refreshLink' => route('survey.mimopbs') 
         ]);
     }
 }

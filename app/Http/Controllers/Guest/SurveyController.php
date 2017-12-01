@@ -11,6 +11,7 @@ use Javascript;
 class SurveyController extends Controller
 {
     private $currencyService;
+    private $surveyService;
 
     public function __construct(
         CurrencyService $currencyService,
@@ -40,6 +41,17 @@ class SurveyController extends Controller
         ]);
      
         return view('surveys.mimopbs');
+    }
+
+    public function showSavingsPlanForm()
+    {
+        $currencies = $this->currencyService->all();
+
+        Javascript::put([
+            'currencies' => $currencies
+        ]);
+
+        return view('surveys.savingsplan');
     }
 
     /**

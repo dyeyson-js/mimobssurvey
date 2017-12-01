@@ -368,7 +368,7 @@
             getCurrency() {
                 const vm = this;
 
-                return axios.post('.api/survey/participant/currency', { id: vm.participant.id })
+                return axios.post('/api/survey/participant/currency', { id: vm.participant.id })
                     .then(response => {
                         vm.currency = response.data;
                     });
@@ -465,7 +465,6 @@
                 vm.errors = {};
 
                 setTimeout(() => {
-                    console.log('hello');
                     if(vm.mimo.id) {
                         return axios.put(`/api/survey/mimo/${vm.mimo.id}`, formData)
                             .then(response => {
@@ -495,7 +494,7 @@
                             });
                     }
 
-                    return axios.post('/survey/mimo', formData)
+                    return axios.post('/api/survey/mimo', formData)
                         .then(response => {
                             vm.is_loading = false;
                             vm.getMimo(response.data.mimo);

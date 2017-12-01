@@ -6,7 +6,7 @@
             <div class="col-md-2">
             </div>
             <div class="col-md-8" style="min-height:400px;">
-            <mimopbs />
+                <savingsplan />
             </div>
             <div class="col-md-12">
             </div>

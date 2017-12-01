@@ -521,7 +521,7 @@
                         });
                     }
 
-                    return axios.post('/survey/balance-sheet', formData)
+                    return axios.post('/api/survey/balance-sheet', formData)
                         .then(response => {
                             vm.is_loading = false;
                             vm.getBalanceSheet(response.data.bs);

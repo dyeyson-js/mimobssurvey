@@ -1,7 +1,7 @@
 <template>
     <div>
         <common-header>
-            Money In Money Out - Personal Balance Sheet Survey
+            Savings Plan Survey
         </common-header>
         
         <common-content>
@@ -199,7 +199,7 @@
                         });
                     }
 
-                    return axios.post('/survey/participant', formData)
+                    return axios.post('/api/survey/participant', formData)
                         .then(response => {
                             vm.is_loading = false;
                             vm.getParticipant(response.data.participant);

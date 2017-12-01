@@ -22,6 +22,7 @@ Route::get('/', function () {
 
 Route::get('/survey', 'Guest\SurveyController@index')->name('survey.index');
 Route::get('/survey/mimopbs', 'Guest\SurveyController@showMimoBsForm')->name('survey.mimopbs');
+Route::get('/survey/savingsplan', 'Guest\SurveyController@showSavingsPlanForm')->name('survey.savingsplan');
 
 Route::post('/api/survey/participant/currency', 'Guest\ParticipantController@getParticipantCurrency');
 Route::post('/api//survey/download', 'Guest\DownloadController@generatePDF')->name('survey.download');

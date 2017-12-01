@@ -1,31 +1,31 @@
 <template>
     <div>
-        <survey-start 
+        <mimopbs-start 
             v-if="progress === 1" 
             :nextStep="nextStep"
         /> 
         
-        <survey-participant 
+        <mimopbs-participant 
             v-if="progress === 2" 
             :participant="participant"
             :getParticipant="getParticipant" 
         />    
 
-        <survey-mimo 
+        <mimopbs-mimo 
             v-if="progress === 3" 
             :participant="participant"
             :mimo="mimo"
             :getMimo="getMimo"
         />    
 
-        <survey-pbs 
+        <mimopbs-pbs 
             v-if="progress === 4" 
             :participant="participant"
             :pbs="pbs"
             :getBalanceSheet="getBalanceSheet"
         />
 
-        <survey-summary
+        <mimopbs-summary
             v-if="progress === 5"
             :getSurvey="getSurvey"
             :getDownloadLink="getDownloadLink"
@@ -36,7 +36,7 @@
             :pbs="pbs"
         />
 
-        <survey-result 
+        <mimopbs-result 
             v-if="progress === 6"
             :survey="survey"
             :downloadLink="downloadLink"

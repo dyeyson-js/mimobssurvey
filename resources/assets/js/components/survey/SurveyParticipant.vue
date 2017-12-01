@@ -171,7 +171,7 @@
 
                 setTimeout(() => {
                     if(vm.participant.id) {
-                        return axios.put(`/survey/participant/${vm.participant.id}`, formData)
+                        return axios.put(`/api/survey/participant/${vm.participant.id}`, formData)
                         .then(response => {
                             vm.is_loading = false;
                             vm.getParticipant(response.data.participant);

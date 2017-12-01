@@ -6,7 +6,7 @@
 
         <common-content>
             <div class="row">
-                <div class="col-md0-12">
+                <div class="col-xs-12">
                     <button 
                         class="btn btn-primary btn-block btn-lg"
                         @click="nextStep"

@@ -26,7 +26,12 @@ class SurveyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($survey_type = "mimopbs")
+    public function index()
+    {
+        return view('surveys.index');
+    }
+
+    public function showMimoBsForm()
     {
         $currencies = $this->currencyService->all();
 
@@ -34,17 +39,7 @@ class SurveyController extends Controller
             'currencies' => $currencies
         ]);
      
-        return view(sprintf('surveys.%s', $survey_type));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
+        return view('surveys.mimopbs');
     }
 
     /**
@@ -63,50 +58,5 @@ class SurveyController extends Controller
             'downloadLink' => route('survey.download'),
             'refreshLink' => route('survey.index') 
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

@@ -20,10 +20,12 @@ Route::get('/', function () {
     
 // });
 
-Route::resource('/survey', 'Guest\SurveyController', ['only' => ['index', 'store']]);
-Route::post('/survey/participant/currency', 'Guest\ParticipantController@getParticipantCurrency');
-Route::post('/survey/download', 'Guest\DownloadController@generatePDF')->name('survey.download');
-Route::apiResource('/survey/participant', 'Guest\ParticipantController', ['only' => ['store', 'update']]);
-Route::apiResource('/survey/mimo', 'Guest\MimoController', ['only' => ['store', 'update']]);
-Route::apiResource('/survey/balance-sheet', 'Guest\BalanceSheetController', ['only' => ['store', 'update']]);
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/survey', 'Guest\SurveyController@index')->name('survey.index');
+Route::get('/survey/mimopbs', 'Guest\SurveyController@showMimoBsForm')->name('survey.mimopbs');
+
+Route::post('/api/survey/participant/currency', 'Guest\ParticipantController@getParticipantCurrency');
+Route::post('/api//survey/download', 'Guest\DownloadController@generatePDF')->name('survey.download');
+Route::apiResource('/api/survey', 'Guest\SurveyController', ['only' => ['store']]);
+Route::apiResource('/api/survey/participant', 'Guest\ParticipantController', ['only' => ['store', 'update']]);
+Route::apiResource('/api/survey/mimo', 'Guest\MimoController', ['only' => ['store', 'update']]);
+Route::apiResource('/api/survey/balance-sheet', 'Guest\BalanceSheetController', ['only' => ['store', 'update']]);

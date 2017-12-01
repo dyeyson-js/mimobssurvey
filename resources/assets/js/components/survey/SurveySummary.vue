@@ -104,7 +104,7 @@
                 vm.errors = {};
 
                 setTimeout(() => {    
-                    return axios.post('/survey', formData)
+                    return axios.post('/api/survey', formData)
                         .then(response => {
                             vm.is_loading = false;
                             vm.getSurvey(response.data.survey);
